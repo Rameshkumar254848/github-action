@@ -1,22 +1,22 @@
 name: Cronjob
+
 on:
-    schedule:
-      - cron: '* * * * *'
-
-
+  schedule:
+    - cron: "*/5 * * * *"   # Runs every 5 minutes (safer than every minute)
+  workflow_dispatch:        # Allows manual trigger
 
 jobs:
   cron:
     runs-on: ubuntu-latest
 
     steps:
-    -  name: Clone repo
-       uses: actions/checkout@v3
+      - name: Clone repo
+        uses: actions/checkout@v3
 
-    -  name: Setup Python
-       uses: actions/setup-python@v4
-       with:
-         python-version: '3.10'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    -  name: Run python script
-       run: python hello.py
+      - name: Run python script
+        run: python hello.py
